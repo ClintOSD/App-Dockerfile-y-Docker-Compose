@@ -10,8 +10,8 @@ def hello():
     try:
         conn = mysql.connector.connect(
             host=os.environ.get("DB_HOST", "db"),
-            user=os.environ.get("DB_USER", "root"),
-            password=os.environ.get("DB_PASSWORD", "example"),
+            user=os.environ.get("DB_USER", "clintosd"),
+            password=os.environ.get("DB_PASSWORD", "clintosd"),
             database=os.environ.get("DB_NAME", "testdb")
         )
         return "Hola Mundo! Conexión a MySQL exitosa por Clint Ohio Santana Diaz"
@@ -19,4 +19,4 @@ def hello():
         return f"Error al conectar a la base de datos ❌: {err}"
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5001)
