@@ -1,0 +1,36 @@
+# docker-compose.yml
+version: '3.8' # Especifica la versión de Docker Compose
+
+services:
+  # Servicio de la aplicación web (Python/Flask)
+  app:
+    build: ./src # Construye la imagen Docker a partir del Dockerfile en el directorio './src'
+    ports:
+      - "5000:5000" # Mapea el puerto 5000 del host al puerto 5000 del contenedor
+    environment: # Variables de entorno para la aplicación
+      DB_HOST: db # El nombre del servicio de la base de datos en Docker Compose
+      DB_USER: user
+      DB_PASSWORD: password
+      DB_NAME: mydatabase
+    depends_on: # Indica que este servicio depende del servicio 'db'
+      - db
+    # Comando para ejecutar la aplicación.
+    # El script 'app.py' ya tiene lógica de reintento para la conexión a la DB.
+    command: sh -c "python app.py"
+
+  # Servicio de la base de datos MySQL
+  db:
+    image: mysql:8.0 # Utiliza la imagen oficial de MySQL versión 8.0
+    environment: # Variables de entorno para configurar MySQL
+      MYSQL_ROOT_PASSWORD: root_password # Contraseña para el usuario 'root' de MySQL
+      MYSQL_DATABASE: mydatabase # Nombre de la base de datos a crear
+      MYSQL_USER: user # Nombre de usuario para la base de datos
+      MYSQL_PASSWORD: password # Contraseña para el usuario de la base de datos
+    ports:
+      - "3306:3306" # Opcional: Expone el puerto 3306 de MySQL al host para acceso directo (ej. con MySQL Workbench)
+    volumes:
+      - db_data:/var/lib/mysql # Monta un volumen para persistir los datos de la base de datos
+
+# Definición de volúmenes
+volumes:
+  db_data: # Volumen para los datos persistentes de MySQL
