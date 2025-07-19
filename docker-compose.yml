@@ -5,7 +5,7 @@ services:
   web:
     build: ./src # Construye la imagen Docker desde el directorio 'src'
     ports:
-      - "5000:5000" # Mapea el puerto 5000 del contenedor al puerto 5000 de tu máquina
+      - "5001:5001" # Mapea el puerto 5000 del contenedor al puerto 5000 de tu máquina
     environment:
       # Variables de entorno para la conexión a la base de datos
       MYSQL_HOST: db
