@@ -14,7 +14,7 @@ def hello():
             password=os.environ.get("DB_PASSWORD", "example"),
             database=os.environ.get("DB_NAME", "testdb")
         )
-        return "Hola Mundo! Conexión a MySQL exitosa Crear por Victor Galvez 2023-1836✅"
+        return "Hola Mundo! Conexión a MySQL exitosa por Clint Ohio Santana Diaz"
     except mysql.connector.Error as err:
         return f"Error al conectar a la base de datos ❌: {err}"
 
