@@ -74,7 +74,8 @@ def hello_world():
         message = f"Error de conexión o base de datos: {e}"
         print(f"Error en la aplicación: {e}")
     finally:
-        if connection and connection.open:
+        # Asegura que la conexión se cierre si se estableció, sin depender de 'connection.open'
+        if connection:
             connection.close()
             print("Conexión a la base de datos cerrada.")
     return f"<h1>{message}</h1>"
